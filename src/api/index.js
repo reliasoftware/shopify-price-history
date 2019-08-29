@@ -19,7 +19,7 @@ function applyApiMiddleware(app) {
       const api = require(path.join(__dirname, file))(Router);
       router.use(api.routes());
     });
-  app.use(jwt({ secret }).unless({ path: [/\/auth/] }));
+  app.use(jwt({ secret }).unless({ path: [/\/auth/, /\/product/] }));
   app.use(router.routes()).use(router.allowedMethods());
 }
 
