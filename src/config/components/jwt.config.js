@@ -10,6 +10,7 @@ const envSchema = joi
     JWT_SECRET: joi.string(),
     JWT_EXPIRE: joi.string(),
     bcryptRound: joi.string(),
+    SHARED_SECRET: joi.string(),
   })
   .unknown()
   .required();
@@ -27,6 +28,7 @@ const config = {
     secret: envVars.JWT_SECRET || 'jwt-secret',
     expire: envVars.JWT_EXPIRE || '48h',
     bcryptRound: parseInt(envVars.BCRYPT_ROUNDS, 10) || 10,
+    sharedSecret: envVars.SHARED_SECRET || '',
   },
 };
 
