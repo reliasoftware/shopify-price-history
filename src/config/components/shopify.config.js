@@ -7,10 +7,8 @@ const joi = require('joi');
  */
 const envSchema = joi
   .object({
-    JWT_SECRET: joi.string(),
-    JWT_EXPIRE: joi.string(),
-    bcryptRound: joi.string(),
-    SHARED_SECRET: joi.string(),
+    SHOPIFY_API_KEY: joi.string(),
+    SHOPIFY_API_SECRET_KEY: joi.string(),
   })
   .unknown()
   .required();
@@ -24,11 +22,9 @@ if (error) {
 }
 
 const config = {
-  jwt: {
-    secret: envVars.JWT_SECRET || 'jwt-secret',
-    expire: envVars.JWT_EXPIRE || '48h',
-    bcryptRound: parseInt(envVars.BCRYPT_ROUNDS, 10) || 10,
-    sharedSecret: envVars.SHARED_SECRET || '',
+  shopify: {
+    SHOPIFY_API_KEY: envVars.SHOPIFY_API_KEY || '',
+    SHOPIFY_API_SECRET_KEY: envVars.SHOPIFY_API_SECRET_KEY || '',
   },
 };
 

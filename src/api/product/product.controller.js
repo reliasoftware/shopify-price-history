@@ -5,7 +5,7 @@ exports.callbacks = async ctx => {
     body: { variants = [] },
   } = ctx.request;
   variants.map(async variant => {
-    const { id, product_id, price, created_at: createdAt, updated_at: updatedAt } = variant;
+    const { id, product_id: ProductId, price, created_at: createdAt, updated_at: updatedAt } = variant;
     const product = await Product.findOne({
       where: {
         id,
@@ -13,7 +13,7 @@ exports.callbacks = async ctx => {
       order: [['updatedAt', 'DESC']],
     });
     if (!product || (product && product.price !== price)) {
-      Product.create({ id, product_id, price, createdAt, updatedAt });
+      Product.create({ id, product_id: ProductId, price, createdAt, updatedAt });
     }
   });
 

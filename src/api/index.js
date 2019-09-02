@@ -1,10 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
-const jwt = require('koa-jwt');
 
 const { apiVersion } = require('../config').server;
-const { secret } = require('../config').jwt;
 const baseName = path.basename(__filename);
 
 function applyApiMiddleware(app) {
@@ -19,7 +17,6 @@ function applyApiMiddleware(app) {
       const api = require(path.join(__dirname, file))(Router);
       router.use(api.routes());
     });
-  app.use(jwt({ secret }).unless({ path: [/\/auth/, /\/product/] }));
   app.use(router.routes()).use(router.allowedMethods());
 }
 
