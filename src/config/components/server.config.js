@@ -10,7 +10,7 @@ const envSchema = joi
     NODE_ENV: joi.string().allow(['development', 'production', 'test']),
     PORT: joi.number(),
     API_VERSION: joi.number(),
-    FRONTEND_URL: joi.string(),
+    HOST: joi.string(),
   })
   .unknown()
   .required();
@@ -30,7 +30,7 @@ const config = {
   server: {
     port: envVars.PORT || 3000,
     apiVersion: envVars.API_VERSION || 'v1',
-    frontendUrl: envVars.FRONTEND_URL || `http://localhost:${envVars.PORT || 3000}`,
+    HOST: envVars.HOST || `http://localhost:${envVars.PORT || 3000}`,
   },
 };
 

@@ -2,7 +2,9 @@ import React from 'react';
 
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Card, ResourceList, Stack, TextStyle, Thumbnail } from '@shopify/polaris';
+import { Card, ResourceList, Stack, TextStyle, Thumbnail, Checkbox } from '@shopify/polaris';
+import PriceHistory from '../components/PriceHistory';
+import CheckTracking from '../components/CheckTracking';
 
 const GET_PRODUCTS_BY_ID = gql`
   query {
@@ -37,7 +39,6 @@ const GET_PRODUCTS_BY_ID = gql`
 
 class ResourceListWithProducts extends React.Component {
   render() {
-    const twoWeeksFromNow = new Date(Date.now() + 12096e5).toDateString();
     return (
       <Query query={GET_PRODUCTS_BY_ID}>
         {({ data, loading, error }) => {
@@ -63,14 +64,7 @@ class ResourceListWithProducts extends React.Component {
                   );
                   const price = node.variants.edges[0].node.price;
                   return (
-                    <ResourceList.Item
-                      id={node.id}
-                      media={media}
-                      accessibilityLabel={`View details for ${node.title}`}
-                      onClick={() => {
-                        console.info('click item');
-                      }}
-                    >
+                    <ResourceList.Item id={node.id} media={media}>
                       <Stack>
                         <Stack.Item fill>
                           <h3>
@@ -80,9 +74,7 @@ class ResourceListWithProducts extends React.Component {
                         <Stack.Item>
                           <p>${price}</p>
                         </Stack.Item>
-                        <Stack.Item>
-                          <p>Expires on {twoWeeksFromNow} </p>
-                        </Stack.Item>
+                        <PriceHistory id={node.id} isTracking={node.isTracking} />
                       </Stack>
                     </ResourceList.Item>
                   );

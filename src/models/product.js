@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
     {
       product_id: DataTypes.BIGINT,
       price: DataTypes.STRING,
+      isTracking: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     {},
   );

@@ -4,6 +4,7 @@ exports.callbacks = async ctx => {
   const {
     body: { variants = [] },
   } = ctx.request;
+  console.info('variants', variants)
   variants.map(async variant => {
     const { id, product_id: ProductId, price, created_at: createdAt, updated_at: updatedAt } = variant;
     const product = await Product.findOne({

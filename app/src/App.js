@@ -6,10 +6,10 @@ import '@shopify/polaris/styles.css';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import './App.css';
-import Products from './Products';
+import Products from './containers/Products';
 
 const client = new ApolloClient({
-  uri: 'https://905e024b.ngrok.io/graphql',
+  uri: 'https://2db69d73.ngrok.io/graphql',
 });
 const config = {
   apiKey: 'e43b73524b43b97d08e7db1292699930',
