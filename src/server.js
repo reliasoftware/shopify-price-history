@@ -22,7 +22,7 @@ if (isDevelopment) {
   server.use(logger);
 }
 
-server.use(serve('./build'));
+server.use(serve('./app/dist'));
 
 shopifyConfig(server);
 
