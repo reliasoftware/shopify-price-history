@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Checkbox } from '@shopify/polaris';
-import { getPriceHistory, updateTrackingType } from '../utils/request.js';
+import { getProductInfo, updateTrackingType } from '../utils/request.js';
 
 class CheckTracking extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class CheckTracking extends React.Component {
 
   componentDidMount() {
     const { id } = this.state;
-    getPriceHistory(id, data => {
+    getProductInfo(id, data => {
       const { product } = data;
       if (product) {
         this.setState({ isShow: product.isShow });

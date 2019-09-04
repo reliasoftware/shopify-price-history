@@ -1,7 +1,7 @@
 import axios from 'axios';
-
-const URL = 'https://8b681492.ngrok.io/api/v1/product/';
-export const getPriceHistory = (id, cb) => {
+const HOST = process.env.HOST;
+const URL = `${HOST}/api/v1/product/`;
+export const getProductInfo = (id, cb) => {
   axios.get(`${URL}${id}`).then(res => {
     cb(res.data);
   });
@@ -9,6 +9,12 @@ export const getPriceHistory = (id, cb) => {
 
 export const updateTrackingType = (id, data, cb) => {
   axios.post(`${URL}${id}`, data).then(res => {
+    cb(res.data);
+  });
+};
+
+export const getPriceHistory = (id, cb) => {
+  axios.get(`${URL}${id}/prices`).then(res => {
     cb(res.data);
   });
 };

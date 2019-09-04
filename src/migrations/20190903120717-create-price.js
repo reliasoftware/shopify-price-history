@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.BIGINT,
       },
       price: {
-        type: Sequelize.STRING,
+        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,

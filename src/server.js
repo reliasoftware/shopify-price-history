@@ -23,6 +23,7 @@ if (isDevelopment) {
 }
 
 server.use(serve('./app/dist'));
+server.use(serve('./frontend/dist'));
 
 shopifyConfig(server);
 

@@ -12,7 +12,7 @@ const envKeys = Object.keys(env).reduce((prev, next) => {
 }, {});
 
 module.exports = {
-  entry: './app/src/index.js',
+  entry: './frontend/index.js',
   mode: 'development',
   module: {
     rules: [
@@ -31,14 +31,14 @@ module.exports = {
   resolve: { extensions: ['*', '.js', '.jsx'] },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'bundle-app.js',
   },
   devServer: {
     contentBase: './dist',
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'app/public/index.html',
+      template: './frontend/index.html',
       minify: {
         removeAttributeQuotes: true,
         collapseWhitespace: true,

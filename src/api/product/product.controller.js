@@ -1,4 +1,5 @@
 const { Product, Price } = require('../../models');
+const { groupBy } = require('../../utils');
 
 exports.callbacks = async ctx => {
   const {
@@ -38,6 +39,19 @@ exports.getProduct = async ctx => {
   ctx.body = { success: true, product };
 };
 
+exports.getProductPrices = async ctx => {
+  const { productId } = ctx.params;
+  const products = await Price.findAll({
+    where: { ProductId: productId },
+    order: [['updatedAt', 'ASC']],
+    raw: true,
+  });
+
+  const data = groupBy(products, 'id');
+
+  ctx.body = { success: true, variants: data };
+};
+
 exports.update = async ctx => {
   const { productId } = ctx.params;
 
@@ -54,23 +68,3 @@ exports.update = async ctx => {
   ctx.body = { success: true };
 };
 
-exports.getProduct2 = async ctx => {
-  const { productId } = ctx.params;
-  const product = await Product.findOne({
-    include: {
-      model: Price,
-      where: { id: productId },
-      attributes: ['id'],
-    },
-    attributes: ['id', 'isShow'],
-  });
-  const prices = await Price.findAll({
-    where: {
-      ProductId: productId,
-    },
-    limit: 5,
-    order: [['updatedAt', 'DESC']],
-  });
-
-  ctx.body = { success: true, prices, product };
-};

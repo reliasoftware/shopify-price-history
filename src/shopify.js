@@ -1,5 +1,5 @@
 require('isomorphic-fetch');
-const { default: createShopifyAuth, verifyRequest } = require('@shopify/koa-shopify-auth');
+const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const { default: graphQLProxy, ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 const { registerWebhook } = require('@shopify/koa-shopify-webhooks');
 const session = require('koa-session');
@@ -16,6 +16,7 @@ function shopifyConfig(server) {
       scopes: ['read_products', 'write_products'],
       async afterAuth(ctx) {
         const { shop, accessToken } = ctx.session;
+        ctx.cookies.set('shopOrigin', shop, { httpOnly: false });
         const registration = await registerWebhook({
           address: `${HOST}/api/v1/product/webhooks/update`,
           topic: 'PRODUCTS_CREATE',
@@ -40,7 +41,6 @@ function shopifyConfig(server) {
   );
 
   server.use(graphQLProxy({ version: ApiVersion.July19 }));
-  //server.use(verifyRequest()).unless({ path: [/\/webhooks\/update/] });
 }
 
 module.exports = shopifyConfig;

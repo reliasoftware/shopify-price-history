@@ -5,15 +5,17 @@ import { Provider } from '@shopify/app-bridge-react';
 import '@shopify/polaris/styles.css';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import Cookies from 'js-cookie';
 import './App.css';
 import Products from './containers/Products';
 
+const HOST = process.env.HOST;
 const client = new ApolloClient({
-  uri: 'https://8b681492.ngrok.io/graphql',
+  uri: `${HOST}/graphql`,
 });
 const config = {
   apiKey: 'e43b73524b43b97d08e7db1292699930',
-  shopOrigin: 'reliasoft1.myshopify.com',
+  shopOrigin: Cookies.get('shopOrigin'),
   forceRedirect: true,
 };
 class App extends Component {

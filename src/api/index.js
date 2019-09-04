@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const Router = require('koa-router');
-
+const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const { apiVersion } = require('../config').server;
 const baseName = path.basename(__filename);
 
@@ -18,6 +18,7 @@ function applyApiMiddleware(app) {
       router.use(api.routes());
     });
   app.use(router.routes()).use(router.allowedMethods());
+  app.use(verifyRequest());
 }
 
 module.exports = applyApiMiddleware;
