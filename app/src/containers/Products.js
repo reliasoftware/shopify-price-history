@@ -3,7 +3,6 @@ import React from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { Card, ResourceList, Stack, TextStyle, Thumbnail, Checkbox } from '@shopify/polaris';
-import PriceHistory from '../components/PriceHistory';
 import CheckTracking from '../components/CheckTracking';
 
 const GET_PRODUCTS_BY_ID = gql`
@@ -74,7 +73,7 @@ class ResourceListWithProducts extends React.Component {
                         <Stack.Item>
                           <p>${price}</p>
                         </Stack.Item>
-                        <PriceHistory id={node.id} isTracking={node.isTracking} />
+                        <CheckTracking id={node.id} isShow={node.isShow} />
                       </Stack>
                     </ResourceList.Item>
                   );

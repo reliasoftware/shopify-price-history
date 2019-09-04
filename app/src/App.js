@@ -9,7 +9,7 @@ import './App.css';
 import Products from './containers/Products';
 
 const client = new ApolloClient({
-  uri: 'https://2db69d73.ngrok.io/graphql',
+  uri: 'https://8b681492.ngrok.io/graphql',
 });
 const config = {
   apiKey: 'e43b73524b43b97d08e7db1292699930',

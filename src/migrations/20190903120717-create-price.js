@@ -5,15 +5,11 @@ module.exports = {
       id: {
         type: Sequelize.BIGINT,
       },
-      product_id: {
+      ProductId: {
         type: Sequelize.BIGINT,
       },
       price: {
         type: Sequelize.STRING,
-      },
-      isTracking: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: true,
       },
       createdAt: {
         allowNull: false,

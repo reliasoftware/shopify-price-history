@@ -9,6 +9,9 @@ module.exports = Router => {
     prefix: `/product`,
   });
 
-  router.get('/:productId', controller.getProduct).post('/webhooks/update', controller.callbacks);
+  router
+    .get('/:productId', controller.getProduct)
+    .post('/webhooks/update', webhook, controller.callbacks)
+    .post('/:productId', controller.update);
   return router;
 };

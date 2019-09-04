@@ -5,13 +5,7 @@ module.exports = {
       id: {
         type: Sequelize.BIGINT,
       },
-      product_id: {
-        type: Sequelize.BIGINT,
-      },
-      price: {
-        type: Sequelize.STRING,
-      },
-      isTracking: {
+      isShow: {
         type: Sequelize.BOOLEAN,
         defaultValue: true,
       },

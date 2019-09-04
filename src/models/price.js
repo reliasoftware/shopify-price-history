@@ -3,13 +3,13 @@ module.exports = (sequelize, DataTypes) => {
   const Price = sequelize.define(
     'Price',
     {
-      product_id: DataTypes.BIGINT,
+      ProductId: DataTypes.BIGINT,
       price: DataTypes.STRING,
     },
     {},
   );
   Price.associate = function(models) {
-    Price.belongsTo(models.Product, { foreignKey: 'product_id' });
+    Price.belongsTo(models.Product);
   };
   return Price;
 };
