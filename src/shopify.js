@@ -7,7 +7,6 @@ const session = require('koa-session');
 const { SHOPIFY_API_KEY, SHOPIFY_API_SECRET_KEY } = require('./config').shopify;
 const { HOST } = require('./config').server;
 
-console.info('HOST', `${HOST}/api/v1/product/webhooks/update`);
 function shopifyConfig(server) {
   server.keys = [SHOPIFY_API_SECRET_KEY];
   server.use(session(server)).use(
@@ -87,7 +86,7 @@ function getProdutTemplateCode(shop, token, themeId) {
 function editProdutTemplateCode(shop, token, themeId, code) {
   const URL = `https://${shop}/admin/api/2019-07`;
   const addReact = `
-  <div id=react-app data-product-id={{product.id}} data-variant={{product.selected_or_first_available_variant.id}}></div><script type=text/javascript src=https://shopify-price-history.herokuapp.com/bundle-app.js></script>`;
+  <div id=react-app data-product-id={{product.id}} data-variant={{product.selected_or_first_available_variant.id}}></div><script type=text/javascript src=${HOST}/bundle-app.js></script>`;
   var options = {
     uri: `${URL}/themes/${themeId}/assets.json`,
     method: 'PUT',
