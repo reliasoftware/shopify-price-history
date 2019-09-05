@@ -38,10 +38,7 @@ class App extends Component {
     this.setState({ modalIsOpen: !modalIsOpen });
   };
   render() {
-    const {
-      product: { isShow },
-      variant,
-    } = this.state;
+    const { product: { isShow } = {}, variant } = this.state;
     const { variant: variantProp, productId } = this.props;
     if (!isShow) return null;
     return (

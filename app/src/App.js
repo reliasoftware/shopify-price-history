@@ -9,9 +9,8 @@ import Cookies from 'js-cookie';
 import './App.css';
 import Products from './containers/Products';
 
-const HOST = process.env.HOST;
 const client = new ApolloClient({
-  uri: `${HOST}/graphql`,
+  uri: `/graphql`,
 });
 const config = {
   apiKey: 'e43b73524b43b97d08e7db1292699930',

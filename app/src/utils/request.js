@@ -1,6 +1,5 @@
 import axios from 'axios';
-const HOST = process.env.HOST;
-const URL = `${HOST}/api/v1/product/`;
+const URL = ` https://shopify-price-history.herokuapp.com/api/v1/product/`;
 export const getProductInfo = (id, cb) => {
   axios.get(`${URL}${id}`).then(res => {
     cb(res.data);
