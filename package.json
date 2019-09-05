@@ -7,7 +7,7 @@
     "check": "npm run format && npm run lint",
     "dev": "nodemon src/index.js",
     "format": "prettier --write \"**/*.+(js|yml|yaml|json)\"",
-    "heroku-postbuild": "npm run reset-db && npm run build-both",
+    "heroku-postbuild": "npm run build-both",
     "build-both": "npm run build-app && npm run build-front",
     "reset-db": "npm run migrate:undo:all && npm run migrate",
     "lint": "eslint .",
@@ -93,6 +93,8 @@
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.12",
     "react-modal": "^3.10.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
     "sequelize": "^5.10.2",
     "sequelize-cli": "^5.5.0",
     "sequelize-paginate": "^1.1.6"
